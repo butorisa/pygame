@@ -134,9 +134,11 @@ class Game:
         is_act = self.player.position != self.player.last_position
         if is_act:
             # ケーキの隣のマスだったら加点
-            is_next = abs(self.cupcake.position[0] - self.player.position[0]) < 101 \
-                      or abs(self.cupcake.position[1] - self.player.position[1]) < 101
-            if is_next:
+            is_next_x = abs(self.cupcake.position[0] - self.player.position[0]) < 101 \
+                      and abs(self.cupcake.position[1] - self.player.position[1]) < 10
+            is_next_y = abs(self.cupcake.position[1] - self.player.position[1]) < 101 \
+                        and abs(self.cupcake.position[0] - self.player.position[0]) < 10
+            if is_next_x or is_next_y:
                 self.score += 10
 
     def _get_observation(self):
